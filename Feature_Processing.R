@@ -110,9 +110,9 @@ for (sample_file in all_aa_kmer) {
   
   
   cat("Working on:", which(all_aa_kmer == sample_file), "out of", length(all_aa_kmer), "       \r")
-  contig <- read.fasta(sample_file,seqtype = "AA" , as.string = FALSE, forceDNAtolower = TRUE,
-                       set.attributes = TRUE)
-  x=kcount(ape::trans(contig,2), k=3)
+  contig <- read.FASTA(sample_file, type = "AA" )
+  x=kcount(contig, k = 5, residues = NULL, gap = "-", named = TRUE,
+           compress = TRUE, encode = FALSE)
   new_x <- data.frame(colSums(x))
   new_x <- t(new_x)
   
