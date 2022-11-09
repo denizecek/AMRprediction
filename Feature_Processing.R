@@ -84,18 +84,6 @@ data_rbind <- do.call("rbind", data)
 
 data_snp <- acast(data_rbind, pos ~ files, value.var = "value" )
 
-all_snp <- list.files("all_kmer", full.names = TRUE)
-
-# Combine all SNP locations in one file
-
-for (sample_file in all_snp) {
-  
-  
-  cat("Working on:", which(all_snp == sample_file), "out of", length(all_snp), "       \r")
-  new <- read.table(sample_file,quote="\"",header = FALSE)
-  x=subset(data2, V3)
-  write.table(x,sub("txt","RDS",sample_file), append = FALSE, sep = " ", dec = ".",row.names = TRUE, col.names = TRUE)
-}
 
 #AA k-mer count from protein.fasta files
 
